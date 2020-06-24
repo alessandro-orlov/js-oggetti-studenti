@@ -28,7 +28,7 @@ $(document).ready(
     ]
     console.log(arrayStudenti);
 
-    $('button').click(
+    $('.standard-tamplate button').click(
       function() {
 
         // Chiedo i dati del nuovo utente
@@ -73,12 +73,9 @@ $(document).ready(
   // ================ HANDLEBARS TEST =========================
 
   // Prova di handlebars tamplate
-  // var source = document.getElementById("entry-template").innerHTML;
-  var source = $('#entry-template').html()
-  var template = Handlebars.compile(source);
 
   // Valori per handlebars tamplate ("nome" e "cognome")
-  var handlebarsStudenti = [
+  var handlebarsPresidenti = [
     {
       "nome": "Donald",
       "cognome": "Trump",
@@ -95,11 +92,63 @@ $(document).ready(
       "eta": 43
     }
   ];
+  console.log('Presidenti all\'inizio:')
+  console.log(handlebarsPresidenti)
+
+
+  var source = $('#entry-template').html()
+  var template = Handlebars.compile(source);
+
+
   // Stampo le tutti i valori delle chiavi
-  for (var i = 0; i < handlebarsStudenti.length; i++) {
-    var html = template(handlebarsStudenti[i]);
+  for (var i = 0; i < handlebarsPresidenti.length; i++) {
+    var html = template(handlebarsPresidenti[i]);
     addHandlebarsElement(html)
   }
+
+
+  $('.handlebars-tamplate button').click(
+    function() {
+      // Chiedo i dati del Presidente
+      var nomePresidente = prompt('Inserisci il nome');
+      while(nomePresidente === ''|| !(isNaN(nomePresidente)) || nomePresidente.length < 2) {
+        nomePresidente = prompt('Errore: inserisci il nome');
+      }
+      var cognomePresidente = prompt('Inserisci il cognome');
+      while(cognomePresidente === ''|| !(isNaN(cognomePresidente)) || cognomePresidente.length < 2) {
+        cognomePresidente = prompt('Errore: inserisci il nome');
+      }
+      var etaPresidente = parseInt(prompt('Inserisci l\'età'));
+      while(etaPresidente === '' || isNaN(etaPresidente) || etaPresidente > 100) {
+        etaPresidente = parseInt(prompt('Errore: inserisci l\'età giusta'));
+      }
+
+      // Inserisco presidente XD
+      var nuovoPresidente = {
+        "nome":  nomePresidente,
+        "cognome": cognomePresidente,
+        "eta": etaPresidente,
+      }
+
+      handlebarsPresidenti.push(nuovoPresidente);
+
+
+      var source = $('#entry-template').html()
+      var template = Handlebars.compile(source);
+
+      $('.lista-handlebars').html('')
+      // Stampo le tutti i valori delle chiavi
+      for (var i = 0; i < handlebarsPresidenti.length; i++) {
+
+        var html = template(handlebarsPresidenti[i]);
+        addHandlebarsElement(html)
+      }
+
+      console.log('Presidenti alla fine:')
+      console.log(handlebarsPresidenti)
+
+    }); // end click
+
 
 }); // End document ready
 //
