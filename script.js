@@ -5,7 +5,7 @@ $(document).ready(
     var valore = "";
 
     // Oggetto Studente
-    var studente =   {
+    var studente = {
         "nome": "Alessandro",
         "cognome": "Orlov",
         "eta": 33
@@ -22,10 +22,13 @@ $(document).ready(
 
     addElement('Studente: ' + valore)
 
+    var arrayStudenti = [
+      studente
+    ]
+    console.log(arrayStudenti);
+
     $('button').click(
       function() {
-        var arrayStudenti = []
-        console.log(arrayStudenti);
 
         // Chiedo i dati del nuovo utente
         var nomeStudente = prompt('Inserisci il nome');
@@ -43,11 +46,14 @@ $(document).ready(
         arrayStudenti.push(nuovoStudente)
 
         console.log(arrayStudenti)
-
+        $('.lista-studenti').html('')
         for (var i = 0; i < arrayStudenti.length; i++) {
+
           var datiSingoloStudente = arrayStudenti[i]
           addElement('Studente: ' + datiSingoloStudente['nome'] + ' ' + datiSingoloStudente["cognome"]);
         }
+
+        console.log('array alla fine : ' + arrayStudenti);
       }
     );
 
@@ -67,4 +73,5 @@ function addElement(value) {
 
   // Inserisco l'elemento nella lista
   $('ul.lista-studenti').append(listItemClone);
+
 }
