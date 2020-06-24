@@ -32,8 +32,17 @@ $(document).ready(
 
         // Chiedo i dati del nuovo utente
         var nomeStudente = prompt('Inserisci il nome');
+        while(nomeStudente === ''|| !(isNaN(nomeStudente)) || nomeStudente.length < 2) {
+          nomeStudente = prompt('Errore: inserisci il nome');
+        }
         var cognomeStudente = prompt('Inserisci il cognome');
+        while(cognomeStudente === ''|| !(isNaN(cognomeStudente)) || cognomeStudente.length < 2) {
+          cognomeStudente = prompt('Errore: inserisci il nome');
+        }
         var etaStudente = parseInt(prompt('Inserisci l\'età'));
+        while(etaStudente === '' || isNaN(etaStudente) || etaStudente > 100) {
+          etaStudente = parseInt(prompt('Errore: inserisci l\'età giusta'));
+        }
 
         // Creo nuovoStudente
         var nuovoStudente = {
@@ -42,10 +51,11 @@ $(document).ready(
           "eta": etaStudente,
         }
 
-        // Inserisco nuovo utente nell'array
+        // Inserisco dati del nuovo studente nell'array
         arrayStudenti.push(nuovoStudente)
-
         console.log(arrayStudenti)
+
+        // Resetto i valori della lista
         $('.lista-studenti').html('')
         for (var i = 0; i < arrayStudenti.length; i++) {
 
