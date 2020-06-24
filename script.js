@@ -13,8 +13,9 @@ $(document).ready(
 
     // Soluzione originale
     // for (var data in studente) {
-    //   addElement(studente[dati])
+    //   addElement(studente[data])
     // }
+
 
     for (proprietàOggetto in studente) {
       valore += studente[proprietàOggetto] + " ";
@@ -68,8 +69,40 @@ $(document).ready(
     );
 
 
-}); // End document ready
+  // ==========================================================
+  // ================ HANDLEBARS TEST =========================
 
+  // Prova di handlebars tamplate
+  // var source = document.getElementById("entry-template").innerHTML;
+  var source = $('#entry-template').html()
+  var template = Handlebars.compile(source);
+
+  // Valori per handlebars tamplate ("nome" e "cognome")
+  var handlebarsStudenti = [
+    {
+      "nome": "Donald",
+      "cognome": "Trump",
+      "eta": 78
+    },
+    {
+      "nome": "Giuseppe",
+      "cognome": "Conte",
+      "eta": 56
+    },
+    {
+      "nome": "Emanuele",
+      "cognome": "Macrone",
+      "eta": 43
+    }
+  ];
+  // Stampo le tutti i valori delle chiavi
+  for (var i = 0; i < handlebarsStudenti.length; i++) {
+    var html = template(handlebarsStudenti[i]);
+    addHandlebarsElement(html)
+  }
+
+}); // End document ready
+//
 // ================================================
 // =============== FUNCTIONS ======================
 
@@ -83,5 +116,15 @@ function addElement(value) {
 
   // Inserisco l'elemento nella lista
   $('ul.lista-studenti').append(listItemClone);
+}
 
+function addHandlebarsElement(value) {
+  // Clone tamplate dal DOM html
+  var listItemClone = $('.tamplate > li').clone();
+
+  // Aggiungo al Tamplate il valore del input
+  listItemClone.append(value);
+
+  // Inserisco l'elemento nella lista
+  $('ul.lista-handlebars').append(listItemClone);
 }

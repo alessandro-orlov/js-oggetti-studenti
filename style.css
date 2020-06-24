@@ -15,6 +15,18 @@
   padding: 20px;
 }
 
+.container::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.standard-tamplate,
+.handlebars-tamplate {
+  width: 50%;
+  float:left;
+}
+
 
  .tamplate {
    display: none;
