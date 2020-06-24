@@ -1,24 +1,31 @@
 $(document).ready(
   function() {
 
+    var proprietàOggetto;
+    var valore = "";
+
     // Oggetto Studente
-    var studenti = [
-      {
+    var studente =   {
         "nome": "Alessandro",
         "cognome": "Orlov",
         "eta": 33
         }
-    ]
 
+    // Soluzione originale
+    // for (var data in studente) {
+    //   addElement(studente[dati])
+    // }
 
-    for (var dati in studenti[0]) {
-      addElement(studenti[0][dati])
-    }
+    for (proprietàOggetto in studente) {
+      valore += studente[proprietàOggetto] + " ";
+    };
 
-
+    addElement('Studente: ' + valore)
 
     $('button').click(
       function() {
+        var arrayStudenti = []
+        console.log(arrayStudenti);
 
         // Chiedo i dati del nuovo utente
         var nomeStudente = prompt('Inserisci il nome');
@@ -27,34 +34,37 @@ $(document).ready(
 
         // Creo nuovoStudente
         var nuovoStudente = {
-          "nome:":  nomeStudente,
-          "cognome:": cognomeStudente,
-          "eta: ": etaStudente,
+          "nome":  nomeStudente,
+          "cognome": cognomeStudente,
+          "eta": etaStudente,
         }
 
         // Inserisco nuovo utente nell'array
-        studenti.push(nuovoStudente)
+        arrayStudenti.push(nuovoStudente)
 
-        console.log(studenti)
+        console.log(arrayStudenti)
 
+        for (var i = 0; i < arrayStudenti.length; i++) {
+          var datiSingoloStudente = arrayStudenti[i]
+          addElement('Studente: ' + datiSingoloStudente['nome'] + ' ' + datiSingoloStudente["cognome"]);
+        }
       }
     );
 
 
-
 }); // End document ready
 
+// ================================================
+// =============== FUNCTIONS ======================
 
-// Aggiungo l'elemento con il tamplate
+// Fumzione aggiungere l'elemento con il tamplate
 function addElement(value) {
   // Clone tamplate dal DOM html
-  var cloneLi = $('.tamplate > ul li').clone();
+  var listItemClone = $('.tamplate > li').clone();
 
   // Aggiungo al Tamplate il valore del input
-  cloneLi.append(value);
+  listItemClone.append(value);
 
   // Inserisco l'elemento nella lista
-  $('.lista-studenti').append(cloneLi);
-
-  // Resetto il valore iniziale (vuoto) dell'input
+  $('ul.lista-studenti').append(listItemClone);
 }
